@@ -3,7 +3,7 @@ const client = dgram.createSocket('udp4') // create new connection
 const event = require('events') // import "events" module
 const mse = new event // create a new event
 
-const { security } = require('../../Positron/index') // import the "secutity" module from Positron
+const { security } = require('../../positron') // import the "secutity" module from Positron
 
 let srv
 
@@ -26,7 +26,6 @@ const send = (action, content) => {
   // send the message to the Agora
   client.send(packet, 0, packet.length, srv.port, srv.address, (err, bytes) => {
     if (err) throw err
-    console.log(bytes)
   })
 }
 
