@@ -1,0 +1,23 @@
+[
+  {
+    "name": "POSITRON-AGORA-EU01",
+    "country": "France",
+    "city": "Grenoble",
+    "address": "127.0.01",
+    "port": 46654
+  },
+  {
+    "name": "POSITRON-AGORA-US01",
+    "country": "Canada",
+    "city": "Montreal",
+    "address": "127.0.01",
+    "port": 84564
+  },
+  {
+    "name": "POSITRON-AGORA-AS01",
+    "country": "Russia",
+    "city": "Moscow",
+    "address": "127.0.01",
+    "port": 48464
+  }
+]
