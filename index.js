@@ -39,7 +39,7 @@ module.exports = {
 
   // A function to login into an Agora
   login (username, password, digit) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       // Hash password
       security.hash(Buffer.from(password)).then(psw => {
         send('LOGIN_USER', { // Send message
@@ -53,12 +53,14 @@ module.exports = {
       mse.on('LOGIN_USER', (r) => {
         resolve(r.content) // return content the content of the message
       })
+
+      setTimeout(() => reject({error: 'TIME_OUT'}), 10000)
     })
   },
 
   // To update the address and port in the Agora
   connect (username, password, digit, port) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       security.hash(Buffer.from(password)).then(psw => {
         send('CONNECT', { // Send message
           username: username,
@@ -71,31 +73,37 @@ module.exports = {
       // On receiving an answer
       mse.on('CONNECT', (r) => {
         resolve(r.content) // return content the content of the message
-      })      
+      })
+
+      setTimeout(() => reject({error: 'TIME_OUT'}), 10000)
     })
   },
 
   // Get a specific client with a token
   getClient (token) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       send('GET_USER', { token: token }) // Send message
 
       // On receiving an answer
       mse.on('GET_USER', (r) => {
         resolve(r.content) // return content the content of the message
-      })      
+      })
+    
+      setTimeout(() => reject({error: 'TIME_OUT'}), 10000)
     })
   },
 
   // Get a specific client with a token
   getClients (number) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       send('GET_USERS', { number: number }) // Send message
 
       // On receiving an answer
       mse.on('GET_USERS', (r) => {
         resolve(r.content) // return content the content of the message
-      })      
+      })
+
+      setTimeout(() => reject({error: 'TIME_OUT'}), 10000)
     })
   }
 }
