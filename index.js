@@ -3,7 +3,7 @@ const client = dgram.createSocket('udp4') // create new connection
 const event = require('events') // import "events" module
 const mse = new event // create a new event
 
-const { security } = require('../../positron') // import the "secutity" module from Positron
+const hash = require('./hash') // import the "hahs" function
 
 let srv
 
@@ -37,11 +37,15 @@ module.exports = {
     })
   },
 
+  listServers () {
+    return require('./agoras.json')
+  },
+
   // A function to login into an Agora
   login (username, password, digit) {
     return new Promise((resolve, reject) => {
       // Hash password
-      security.hash(Buffer.from(password)).then(psw => {
+      hash(Buffer.from(password)).then(psw => {
         send('LOGIN_USER', { // Send message
           username: username,
           password: psw,
@@ -61,7 +65,7 @@ module.exports = {
   // To update the address and port in the Agora
   connect (username, password, digit, port) {
     return new Promise((resolve, reject) => {
-      security.hash(Buffer.from(password)).then(psw => {
+      hash(Buffer.from(password)).then(psw => {
         send('CONNECT', { // Send message
           username: username,
           password: psw,

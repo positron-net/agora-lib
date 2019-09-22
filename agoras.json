@@ -3,7 +3,14 @@
     "name": "POSITRON-AGORA-EU01",
     "country": "Switzerland",
     "city": "Geneva",
-    "address": "youthforclimate.Fr",
+    "address": "youthforclimate.fr",
+    "port": 45641
+  },
+  {
+    "name": "POSITRON-AGORA-DEV",
+    "country": "local",
+    "city": "local",
+    "address": "127.0.0.1",
     "port": 45641
   }
 ]
